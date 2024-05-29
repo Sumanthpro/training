@@ -26,4 +26,4 @@
 
 ![all http status code](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpuYdLEzBvwemix8pwsncUkLLOQqnByncadg&s)
 
-ffioye
+netlify- to deploy our website it is a platform and if user changes any thing in webpage the netlify will automatically change it
