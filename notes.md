@@ -27,3 +27,5 @@
 ![all http status code](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpuYdLEzBvwemix8pwsncUkLLOQqnByncadg&s)
 
 netlify- to deploy our website it is a platform and if user changes any thing in webpage the netlify will automatically change it
+
+- readme.md -- is a file name used in github to represent in the front page of our account which represnts similar to the preview notes.md----------------------------------------->
