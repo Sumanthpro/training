@@ -130,3 +130,15 @@ solution is use function
 - Extensibility- can able to add new features and it should be easy to add new features
 - Testability-should be less errors
 - Performance-working for desired output or not
+
+## Copy by Value & Copy by Reference
+
+- copy be value means it will create a copy of a variable which won't affect the copied variable
+- While in the case of copy by reference it will point the same address i.e both the variables will point the same address which will affect the copied variable
+- for copy by value use spread operator[... var-name];
+
+```js
+var q1 = [100, 200, 300];
+var q2 = [...q1];
+var q3 = [10, 20, ...q2, 400];
+```
