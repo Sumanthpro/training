@@ -29,7 +29,7 @@
    }
    ```
 
-   # Types of delcarations
+   # Types of declarations
 
    ```js
    var- can be reassigned, and redeclared
@@ -86,7 +86,7 @@ console.log(x1 + x2); //56 here concatination has high priority rather than addi
 var x1 = 5;
 var x2 = "6";
 console.log(x1 - x2);
-console.log(x1 + parse(x2));
+console.log(x1 + parseInt(x2));
 ```
 
 ## comparison and faster comparison between "==" & "==="
@@ -139,6 +139,27 @@ solution is use function
 
 ```js
 var q1 = [100, 200, 300];
-var q2 = [...q1];
+var q2 = [...q1]; //copy by value[spread operator]
 var q3 = [10, 20, ...q2, 400];
+```
+
+## For loops
+
+```js
+for (
+  let i = 0;
+  i < marks.length;
+  i++ //more contrl
+) {
+  console.log("index:", i, "Marks:", marks[i]);
+}
+
+for (let idx in marks) {
+  //readable and simple
+  console.log("index:", idx, "Marks:", marks[idx]);
+}
+for (let mark of marks) {
+  //Readable and cleaner
+  console.log("Marks:", mark);
+}
 ```
