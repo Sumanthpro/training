@@ -5,7 +5,7 @@
 2. To find the what type of data type the variable is we use
 
    ```js
-   Syntax: typeof var_name;
+   Syntax: typeof var_name; //
    ```
 
    example:
