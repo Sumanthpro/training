@@ -1,5 +1,7 @@
 # Introduction to Java Script
 
+# Day-3
+
 1. Data type declaration in js is not necessary
 
 2. To find the what type of data type the variable is we use
@@ -63,6 +65,8 @@ console.log(student[name]);
 ```
 
 ```js
+## tips
+
 Undefined is a value
 undeclared means an error
 ```
@@ -162,4 +166,86 @@ for (let mark of marks) {
   //Readable and cleaner
   console.log("Marks:", mark);
 }
+```
+
+# Day-4
+
+## ES6- features
+
+- numeric seperators
+- let and const
+- rest
+- spread--- ...
+- template literal--- ``
+
+## Objects
+
+```js
+Objects.keys(object_name);
+Objects.values(object_name);
+```
+
+## Template Literal(Interpolation)
+
+add ${ }-to the variable usage.
+
+```js
+function func_ name(first,last)
+{
+return welcome ${last},${first};
+}
+```
+
+## Destructoring
+
+### array
+
+```js
+const [t1, t2, t3] = [100, 200];
+console.log(t1, t2, t3); //it will shows t3 as undefined
+
+const [t1, t2, t3 = 80] = [100, 2000, 500];
+console.log(t1, t2, t3); //it will print t3 as 500 because only it will be printed as undefined only if it is not declared
+
+const [t1, t2, t3 = 80] = [100, 200, null];
+console.log(t1, t2, t3); //t3 will print null because null is an object
+
+const [, t1, t2, t3 = 80] = [100, 200, null];
+console.log(t1, t2, t3); //it will print 200,null,80 becuase it is called holes
+```
+
+### Object
+
+```js
+const{name,house,net,power}=
+{
+  name:"tony stark";
+  house:"👽";
+  net:"1000M";
+  power:"Rich";
+
+}
+Console.log(name);//tony stark
+Console.log(house);//👽
+console.log(power);//rich
+```
+
+## Truthy && Falsyy
+
+```js
+js;
+var ch = "cool";
+if (ch) console.log("true");
+else console.log("false");
+```
+
+## In built methods in string
+
+```js
+var n = "sumanth";
+n.toUpperCase();
+n.toLowerCase();
+"This is a beautiful day", split(" "); // converts every word into the array
+"This is a beautiful day", join("|");
+"This is a beautiful day", split(""); // converts every character into an array
 ```

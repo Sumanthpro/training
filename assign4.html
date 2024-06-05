@@ -15,12 +15,15 @@
         { title: "Memento", ratings: [4, 5, 4, 5, 4] },
       ];
       var avg = [];
+      var f;
       for (var i = 0; i < movies.length; i++) {
         var sum = 0;
         for (var j = 0; j < movies[i].ratings.length; j++) {
           sum += movies[i].ratings[j];
+          avg.push(sum / movies[i].ratings.length);
+          //f=Math.max(...avg)
         }
-        avg.push(sum / movies[i].ratings.length);
+
         //console.log(avg);
       }
       console.log(Math.max(...avg));
