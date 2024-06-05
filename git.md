@@ -19,4 +19,9 @@
 
 > git reset will reset the saved changes
 
-> The the difference between github and git is github is a storage space to store our projects or source codes while git is a software tool used to work with out projects
+> git branch branch_name --- To create new branch
+> git branch -D branch_name -- to delete a branch
+
+> git checkout -- to shift into a branch
+
+> The the difference between github and git is github is a storage space to store our projects or source codes while git is a software tool used to work with out projects.
