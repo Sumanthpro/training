@@ -15,6 +15,7 @@
 > git add file_name1 file_name2 file_name3 --- to add multiple files at a time into git
 
 > git commit -m "new entry" -- to commit and push into git this command is used
+> git log -p is used to patch means can able to see the changes made in the code
 
 > git reset will reset the saved changes
 
