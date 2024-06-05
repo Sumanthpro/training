@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const cart = [
+        { name: "Apple", price: 0.5, quantity: 4 },
+        { name: "Banana", price: 0.25, quantity: 6 },
+      ];
+
+      const newItems = [
+        { name: "Cherry", price: 0.75, quantity: 5 },
+        { name: "Date", price: 1, quantity: 3 },
+      ];
+
+      //   Ex 1.1: Combine cart + newItems
+
+      for (let item of cart) {
+      }
+
+      // Ex 1.2: Find total of cart
+      var new1 = [...cart, ...newItems];
+      console.log(new1[0]);
+      var a = 0;
+      for (var i = 0; i < new1.length; i++) {
+        a += new1[i].price * new1[i].quantity;
+      }
+      var b = 0;
+      for (let i in new1) {
+        b += new1[i].price * new1[i].quantity;
+      }
+      var c = 0;
+      for (let i of new1) {
+        c += i.price * i.quantity;
+      }
+      console.log(c);
+    </script>
+  </body>
+</html>

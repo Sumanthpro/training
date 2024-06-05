@@ -5,7 +5,7 @@
 2. To find the what type of data type the variable is we use
 
    ```js
-   Syntax: typeof var_name;
+   Syntax: typeof var_name; //
    ```
 
    example:
@@ -29,7 +29,7 @@
    }
    ```
 
-   # Types of delcarations
+   # Types of declarations
 
    ```js
    var- can be reassigned, and redeclared
@@ -86,7 +86,7 @@ console.log(x1 + x2); //56 here concatination has high priority rather than addi
 var x1 = 5;
 var x2 = "6";
 console.log(x1 - x2);
-console.log(x1 + parse(x2));
+console.log(x1 + parseInt(x2));
 ```
 
 ## comparison and faster comparison between "==" & "==="
@@ -130,3 +130,36 @@ solution is use function
 - Extensibility- can able to add new features and it should be easy to add new features
 - Testability-should be less errors
 - Performance-working for desired output or not
+
+## Copy by Value & Copy by Reference
+
+- copy be value means it will create a copy of a variable which won't affect the copied variable
+- While in the case of copy by reference it will point the same address i.e both the variables will point the same address which will affect the copied variable
+- for copy by value use spread operator[... var-name];
+
+```js
+var q1 = [100, 200, 300];
+var q2 = [...q1]; //copy by value[spread operator]
+var q3 = [10, 20, ...q2, 400];
+```
+
+## For loops
+
+```js
+for (
+  let i = 0;
+  i < marks.length;
+  i++ //more contrl
+) {
+  console.log("index:", i, "Marks:", marks[i]);
+}
+
+for (let idx in marks) {
+  //readable and simple
+  console.log("index:", idx, "Marks:", marks[idx]);
+}
+for (let mark of marks) {
+  //Readable and cleaner
+  console.log("Marks:", mark);
+}
+```
