@@ -59,16 +59,54 @@ using binary search i.e means split the commit line into half and then searching
 
 > git pull --rebase origin branch_name(dev) -- runs this command daily to pull the changes from dev to feature
 
+> git blame -- tell how many times edits are happend those history will be shown(audit)
+
+> git diff -- aslo done by audit team
+
 # Terminologies used in professional life
 
-- key terms
+## key terms
 
 - configure management -- Audit (we need checks and balances of what we are doing)-> by doing frequent commits
 
-- System -code or product which we are devloping is called system.(for it people)
+- CI,Audit , Baseline(SP) , Accounting , Change management
+
+  | | | | |
+
+files git blame, commits, git log, Branches,PR
+git diff Tags git blame
+
+- System --- code or product which we are devloping is called system.(for it people)
 
 - COnfiguration Item(CI)-- deals with your git i.e files
 
 - Release management -- branching strategies -- master branch for customer ,staging for testing, dev for developers.CI/CD(continues integration and continous deployement) -- deploy master to netlify.
 
--
+## Benifits:
+
+- Traceability -- why ,who did
+- quality & consistency -- code quality and maintaining good code qaulity consistancy
+- Reduces Risk & Errors -- storing for backup
+- Change Management
+
+# Release Management
+
+1. Plannig - Branching Strategy
+2. Governance - to maintain a system (Access level for each branch)
+3. Scheduling - Spirnt, Agile,proper schedule to manage release through sprints
+4. Automation - CI/CD, no human error
+5. Contigency - it is like a backup plan if main code is failed i.e (rollback to the older version)
+
+## Important points
+
+```js
+selenium is a tool used to test the code automatically (seleinum is written in java)
+cyuprus is a tool used to test the code automatically(cyuprus is written in java script)
+```
+
+```js
+[github] --> (merge)/devops [Netlify] -----> (build) [removes comments,extra spaces ,variables i.e it creates certain variables simply called uglier] ----> (demo)  [Automation test either selenium/cyuprus]  ---> [customer]
+  |
+  |
+  [stop]
+```
