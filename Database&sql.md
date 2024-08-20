@@ -606,7 +606,7 @@ where as non- unique is on the non unique columns.
 
 - Consistency :
 
-  - cannot hav ghost data.
+  - cannot have ghost data.
   - something should be accounted.
     if a transaction is happend somewhere it has to be reduced and somewhere it has to be added.
 
@@ -621,7 +621,7 @@ begin transaction
 update actors
 set FirstName ='prabhask'
 
-where ActorID=11
+where ActorID=5
 
 commit transaction
 
@@ -630,6 +630,184 @@ select *from Actors where ActorID=5 --❌ won't execute until the transaction is
 ```
 
 - Durability :
+
   - server break should not be happend in between a transcation.
   - like user1 sends the money to the user2 but due to network issues the money was deducted in user1 but not reflected in user2, then at that time rollback should be happen.
   - means the money should be roll back to the user1.
+
+  ## Coalesce
+
+  - returns the first value which is not null
+
+  ```sql
+  select coalesce(null,null,'First non-null value','hi') as firstnontnullvalue;
+
+  select coalesce(firstname,lastname,middlename) from user;
+  ```
+
+  ## query to find current database
+
+  ```sql
+  select db_name() as currentDatabase;
+  ```
+
+  ## query for sql version
+
+  ```sql
+  select @@version as sqlserverversion;
+  ```
+
+  ## sql service name
+
+  ```sql
+  select @@servicename as servicename;
+  ```
+
+  ## query to find session user
+
+  ```sql
+  select session_user as currentsessionuser;
+  ```
+
+  ## query to find the current user
+
+  ```sql
+  select system_user as systemusername;
+  ```
+
+  # user-defined data types
+
+  ```sql
+  create type phonenumber from varchar(15) not null;
+  ```
+
+## xml datatype
+
+```sql
+declare @xmldoc int;
+declare @xmldata nvarchar(max);
+-- 1. Assign XML data to a variable
+SET @xmlData =
+'<Books>
+<Book id="1">
+<Title>SQL for Beginners</Title>
+<Author>John Doe</Author>
+<Price>29.99</Price>
+</Book>
+<Book id="2">
+<Title>Advanced SQL</Title>
+<Author>Jane Smith</Author>
+<Price>49.99</Price>
+</Book>
+</Books>';
+create table table_name
+( id int,books xml);
+-- 2. Parse the XML document
+exec sp_xml_preparedocument @xmldoc output,@xmldata;
+-- 3. Query the XML data using OPENXML
+select * from
+openxml(@xmldoc,'/books/book',1)
+with(
+  id int '@id',
+  title nvarchar(100) 'title',
+  author nvarchar(100) 'Author',
+  price decimal(10,2) 'price'
+);
+-- to remove the memory i.e to clear
+EXEC sp_xml_removedocument @xmlDoc;
+```
+
+# Triggers
+
+- To Log The Actions.
+- Changes in one table should reflect another table.
+- if we update on a table the insert should happen in another table
+
+![alt text](image-18.png)
+
+![alt text](image-17.png)
+
+unbounded precciding = starting of the partition
+ubounded follwoing = ending of partition
+
+```sql
+--- to get the sum of all the rows before that row
+Sum(sales_amount) Over (ORder by sales_amount Rows Between unbounded preceding and current row) as running_total
+
+Sum(sales_amount) Over (partition by region ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+```
+
+```sql
+-- to get sum of the before row , that row and after row
+Sum(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+Avg(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+Count(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+-- it will sum the total table able reflect the same value in each row
+sum(sales_amount) over (order by sales_amount row between unbounded preceding and unbounded following) as total_sales
+```
+
+## json into tables
+
+```sql
+[00:14] Ragav Kumar V
+DECLARE @jsonData NVARCHAR(MAX)
+SET @jsonData = N'{
+    "Books": [
+        {"Title": "SQL Essentials", "Author": "John Doe"},
+        {"Title": "Learning XML", "Author": "Jane Smith"}
+    ],
+    "sales": 4000
+}'
+
+SELECT Title, Author
+FROM OPENJSON(@jsonData, '$.Books')
+WITH (
+    Title NVARCHAR(100),
+    Author NVARCHAR(100)
+)
+```
+
+```sql
+DECLARE @jsonData NVARCHAR(MAX)
+SET @jsonData = N'{
+    "Books": [
+        {"id": "12345", "Details": {"Title": "SQL Essentials", "Author": "John Doe"}},
+        {"id": "67890", "Details": {"Title": "Learning XML", "Author": "Jane Smith"}}
+    ]
+}'
+
+SELECT id, Title, Author
+FROM OPENJSON(@jsonData, '$.Books')
+WITH (
+    id NVARCHAR(5),
+    Title NVARCHAR(100) '$.Details.Title',
+    Author NVARCHAR(100) '$.Details.Author'
+)
+```
+
+## 4-powerful functions in json
+
+- for arrays and objects use -json_query-(non scalar)
+- for single value datatypes use - json_value-(scalar functions)
+- the data type to stroe json is nvarchar(max)-cause json is string
+
+## Ntile() -function
+
+```sql
+with cte_a
+as
+(
+select region,product_type,sales_id,ntile(3) over(order by sales_amount desc) as category from sales_data
+)
+select *,
+case
+when category =1 then 'high'
+when category =2 then 'medium'
+else
+'low'
+end as category1
+from cte_a;
+```
