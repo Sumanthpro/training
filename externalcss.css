@@ -1,0 +1,16 @@
+body{
+    color: whitesmoke;
+    background-image: linear-gradient(to right bottom, #000000, #2f1523, #51244d, #663a84, #605ac6);
+ 
+ width: 300px;
+  border: 6px solid white;
+  padding: 50px;
+  margin: 20px;
+  .h1,h2,h3,h4,h6,h5{
+    color: white;
+  }
+  
+  
+ 
+}
+    

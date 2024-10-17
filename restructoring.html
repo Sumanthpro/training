@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const cart = [
+        { name: "Apple", price: 0.5, quantity: 4 },
+        { name: "Banana", price: 0.25, quantity: 6 },
+      ];
+
+      const newItems = [
+        { name: "Cherry", price: 0.75, quantity: 5 },
+        { name: "Date", price: 1, quantity: 3 },
+      ];
+      var new1 = [...cart, ...newItems];
+
+      var a = 0;
+      for (var items in new1) {
+        var { price, quantity } = new1;
+        a += price * quantity;
+      }
+      console.log(a);
+      /// task 5
+      function transformSentence() {
+        // Your code here
+
+        var ch = sentence.split(" ");
+        var b = ch.reverse();
+        b = b.join(" ").toUpperCase();
+
+        return b;
+      }
+
+      // Task 6
+      let sentence = "Hello world from JavaScript";
+      let transformed = transformSentence(sentence);
+      console.log(transformed);
+      function processNames(names) {
+        let result = [];
+        for (let i of names) {
+          result.push(i.split(" ").join(" ").toUpperCase("_"));
+          //result.push(nameParts);
+        }
+        return result;
+      }
+
+      const namesArray = ["john doe", "jane smith", "alice jones"];
+      console.log(processNames(namesArray));
+    </script>
+  </body>
+</html>

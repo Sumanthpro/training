@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Enter your login details!</h1>
+    <form action="submit.html">
+      <div class="container">
+        <form action="submit.html">
+          <label for="usrname">Username</label>
+          <input type="text" id="usrname" name="usrname" required /><br /><br />
+
+          <label for="psw">Password</label>
+          <input
+            type="password"
+            id="psw"
+            name="psw"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            required
+          /><br /><br />
+
+          <a href="forgotpass.html">Forgot password</a><br /><br />
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </form>
+  </body>
+</html>

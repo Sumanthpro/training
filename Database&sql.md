@@ -258,6 +258,8 @@ alter table table_name
 add constriant name_len  check(len("name")>3);
 ```
 
+<<<<<<< HEAD
+
 # group by clause
 
 - group by
@@ -289,6 +291,10 @@ select region,product_type,sum(sales_amount),
 rank() over(partition by region order by descproduct_type)
 from sales_data
 ```
+
+=======
+
+> > > > > > > sql_trans
 
 # Constraints
 
@@ -342,11 +348,17 @@ year int not null ,Director_id int foreign key references director);
 - equi join
 - cross join [matrix multiplication format]
 
+<<<<<<< HEAD
+
 ## correlated queries:
 
 - when inner table has the connection with the outer table then this correlated is used.
 - Subqueries are not executed repeatedly once for each row (especially in the case of the WHERE clause) while correlated subqueries are executed repeatedly once for each row.
 -
+
+=======
+
+> > > > > > > sql_trans
 
 # XML - auto,path
 
@@ -595,7 +607,15 @@ execute spd 'Drama'
 
 ![alt text](image-14.png)
 
+<<<<<<< HEAD
+
 # clustered index
+
+=======
+
+## clustered index
+
+> > > > > > > sql_trans
 
 1. primary key
 2. decide table order
@@ -609,7 +629,15 @@ drop index IX_tblEmployee_Gender_Salary on tblemployee;
 -- To drop that index use the above command.
 ```
 
+<<<<<<< HEAD
+
 # non clustered
+
+=======
+
+## non clustered
+
+> > > > > > > sql_trans
 
 1. non primary key
 2. not decides table order
@@ -625,6 +653,8 @@ create nonclustered index exe on  employees(name desc);
 - But Deletion will be slower because it needs to delete in more tables because the sql will has to delete the data in the background in many tables
 
 ![alt text](image-15.png)
+
+<<<<<<< HEAD
 
 ## Differnece between clustered and non-clustered index
 
@@ -660,6 +690,10 @@ alter index index_name on table_name disable\rebuild;
 exec sp_rename 'movies.ix_filtered_year','Ix_movie-filter_year'
 ```
 
+=======
+
+> > > > > > > sql_trans
+
 ## Unique Vs Non-Unique
 
 unique index means applying unqiue on the unique column
@@ -693,7 +727,11 @@ begin transaction
 update actors
 set FirstName ='prabhask'
 
+<<<<<<< HEAD
 where ActorID=11
+=======
+where ActorID=5
+>>>>>>> sql_trans
 
 commit transaction
 
@@ -797,3 +835,92 @@ EXEC sp_xml_removedocument @xmlDoc;
   ![alt text](image-21.png)
 
 ![alt text](image-22.png)
+
+![alt text](image-18.png)
+
+![alt text](image-17.png)
+
+unbounded precciding = starting of the partition
+ubounded follwoing = ending of partition
+
+```sql
+--- to get the sum of all the rows before that row
+Sum(sales_amount) Over (ORder by sales_amount Rows Between unbounded preceding and current row) as running_total
+
+Sum(sales_amount) Over (partition by region ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+```
+
+```sql
+-- to get sum of the before row , that row and after row
+Sum(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+Avg(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+
+Count(sales_amount) Over (ORder by sales_amount Rows Between 1 preceding and 1 following) as running_total
+-- it will sum the total table able reflect the same value in each row
+sum(sales_amount) over (order by sales_amount row between unbounded preceding and unbounded following) as total_sales
+```
+
+## json into tables
+
+```sql
+[00:14] Ragav Kumar V
+DECLARE @jsonData NVARCHAR(MAX)
+SET @jsonData = N'{
+    "Books": [
+        {"Title": "SQL Essentials", "Author": "John Doe"},
+        {"Title": "Learning XML", "Author": "Jane Smith"}
+    ],
+    "sales": 4000
+}'
+
+SELECT Title, Author
+FROM OPENJSON(@jsonData, '$.Books')
+WITH (
+    Title NVARCHAR(100),
+    Author NVARCHAR(100)
+)
+```
+
+```sql
+DECLARE @jsonData NVARCHAR(MAX)
+SET @jsonData = N'{
+    "Books": [
+        {"id": "12345", "Details": {"Title": "SQL Essentials", "Author": "John Doe"}},
+        {"id": "67890", "Details": {"Title": "Learning XML", "Author": "Jane Smith"}}
+    ]
+}'
+
+SELECT id, Title, Author
+FROM OPENJSON(@jsonData, '$.Books')
+WITH (
+    id NVARCHAR(5),
+    Title NVARCHAR(100) '$.Details.Title',
+    Author NVARCHAR(100) '$.Details.Author'
+)
+```
+
+## 4-powerful functions in json
+
+- for arrays and objects use -json_query-(non scalar)
+- for single value datatypes use - json_value-(scalar functions)
+- the data type to stroe json is nvarchar(max)-cause json is string
+
+## Ntile() -function
+
+```sql
+with cte_a
+as
+(
+select region,product_type,sales_id,ntile(3) over(order by sales_amount desc) as category from sales_data
+)
+select *,
+case
+when category =1 then 'high'
+when category =2 then 'medium'
+else
+'low'
+end as category1
+from cte_a;
+```

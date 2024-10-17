@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const movies = [
+        { title: "Inception", ratings: [5, 4, 5, 4, 5] },
+        { title: "Interstellar", ratings: [5, 5, 4, 5, 4] },
+        { title: "Dunkirk", ratings: [4, 4, 4, 3, 4] },
+        { title: "The Dark Knight", ratings: [5, 5, 5, 5, 5] },
+        { title: "Memento", ratings: [4, 5, 4, 5, 4] },
+      ];
+      var avg = [];
+      var f;
+      for (var i = 0; i < movies.length; i++) {
+        var sum = 0;
+        for (var j = 0; j < movies[i].ratings.length; j++) {
+          sum += movies[i].ratings[j];
+          avg.push(sum / movies[i].ratings.length);
+          //f=Math.max(...avg)
+        }
+
+        //console.log(avg);
+      }
+      console.log(Math.max(...avg));
+      console.log();
+    </script>
+  </body>
+</html>

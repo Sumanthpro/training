@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const movieUrl = (domain, genre, year) =>
+        `http://${domain}?genere=${genre}&year=${year}`;
+
+      console.log(movieUrl("imdb.com", "thriller", 2020));
+      const movieurl1 = (domain1, genre1, year1) =>
+        `hi my name is${domain1} and i like ${genre1} from the age of${year}`;
+      console.log(movieurl1("sumanth", "thriller", 20));
+    </script>
+  </body>
+</html>

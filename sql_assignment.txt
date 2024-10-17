@@ -1,0 +1,61 @@
+
+1. select *from customers where caddress='Bangalore';
+
+2. select *from customers where caddress<>'Bangalore';
+
+3. select *from customers where age>50 and caddress<>'Bangalore';
+
+4. select *from customers where   custname like'a%';
+
+5. select *from customers where custname like '%br%';
+
+6. select *from customers where custname like '[a-k]%';
+
+7. select *from customers where len(custname)>5;
+
+8. select *from customers where   custname like's%' and custname like '%e' and custname like '__c%';
+
+9. select distinct custname from customers;
+
+10. select *from orderdetails where (price between 100 and 200 ) or price between 700 and 1200;
+
+11. select *from customers where   custname like'al%' and custname like '%n';
+
+12. select oid,price, price*1.2 as newprice from orderdetails;
+
+13. select top(3)* from orderdetails order by qyt desc;
+
+14. select count(custid) as count from orderdetails  group by custid;
+
+15. select * from orderdetails where datediff(year,odate,GETDATE())<5;
+
+16. Select * from customers where custname is null;
+
+17. select concat(oid,'-',format(odate,'dd/MM/yyyy')),price*qyt as Total from orderdetails;	
+			
+18. update orderdetails
+set price=price/1.2 
+where qyt>50;
+
+19. select *from orderdetails 
+                  where format(odate,'dd-MM-yy')='1-12-90' 
+				  and price between 4000 and 6000 
+				  order by price;
+20. select custid,sum(price) as price, count(qyt) as qyt  from orderdetails
+group by custid;
+
+21. select custid,sum(price) as price, count(qyt) as qyt  from orderdetails
+group by custid having sum(price)>4000;
+
+22. create table custhistory (custid int primary key,
+custname varchar(20),
+age tinyint,
+caddress varchar(20))
+
+insert into custhistory 
+select *from customers;
+delete from custhistory;
+insert into custhistory 
+select *from customers
+where age<23;
+select *from custhistory;

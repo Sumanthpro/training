@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   const books = [
+      //     { title: "Infinite Jest", rating: 4.5, genre: "Fiction" },
+      //     { title: "A Brief History of Time", rating: 4.8, genre: "Science" },
+      //     { title: "The Catcher in the Rye", rating: 3.9, genre: "Fiction" },
+      //     { title: "Sapiens", rating: 4.9, genre: "History" },
+      //     { title: "Clean Code", rating: 4.7, genre: "Technology" },
+      //   ];
+      //   for (let i in books) {
+      //     if (books[i].rating >= 4.7) {
+      //       console.log(books[i].title);
+      //     }
+      //   }
+      const employes = [
+        { id: 1, name: "Alice", grade: 78 },
+        { id: 2, name: "Bob", grade: 85 },
+        { id: 3, name: "Charlie", grade: 92 },
+        { id: 4, name: "David", grade: 88 },
+        { id: 5, name: "Eva", grade: 76 },
+      ];
+      var arr = [];
+      for (var i = 0; i < employes.length; i++) {
+        if (employes[i].grade > 80) {
+          arr.push({ id: employes[i].id, status: "promoted" });
+        }
+      }
+      console.log(arr);
+    </script>
+  </body>
+</html>
