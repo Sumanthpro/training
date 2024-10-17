@@ -258,6 +258,44 @@ alter table table_name
 add constriant name_len  check(len("name")>3);
 ```
 
+<<<<<<< HEAD
+
+# group by clause
+
+- group by
+- multiple group by
+- grouping sets- it does'nt worry about the order of the coloumn
+  ![alt text](image-17.png)
+
+```sql
+select
+```
+
+## rollup & cube
+
+- rollup and cube is similar to grouping sets
+- rollup: it will do group of region,(producttype,region),null
+- cube : it will give all the possible combination.
+  ![alt text](image-18.png)
+
+## Rank-dense,row
+
+![alt text](image-20.png)
+
+![alt text](image-19.png)
+
+- partition will not summerize the data while grouping will do it.
+
+```sql
+select region,product_type,sum(sales_amount),
+rank() over(partition by region order by descproduct_type)
+from sales_data
+```
+
+=======
+
+> > > > > > > sql_trans
+
 # Constraints
 
 - check
@@ -309,6 +347,18 @@ year int not null ,Director_id int foreign key references director);
 - normal join
 - equi join
 - cross join [matrix multiplication format]
+
+<<<<<<< HEAD
+
+## correlated queries:
+
+- when inner table has the connection with the outer table then this correlated is used.
+- Subqueries are not executed repeatedly once for each row (especially in the case of the WHERE clause) while correlated subqueries are executed repeatedly once for each row.
+-
+
+=======
+
+> > > > > > > sql_trans
 
 # XML - auto,path
 
@@ -557,7 +607,15 @@ execute spd 'Drama'
 
 ![alt text](image-14.png)
 
+<<<<<<< HEAD
+
+# clustered index
+
+=======
+
 ## clustered index
+
+> > > > > > > sql_trans
 
 1. primary key
 2. decide table order
@@ -571,7 +629,15 @@ drop index IX_tblEmployee_Gender_Salary on tblemployee;
 -- To drop that index use the above command.
 ```
 
+<<<<<<< HEAD
+
+# non clustered
+
+=======
+
 ## non clustered
+
+> > > > > > > sql_trans
 
 1. non primary key
 2. not decides table order
@@ -587,6 +653,46 @@ create nonclustered index exe on  employees(name desc);
 - But Deletion will be slower because it needs to delete in more tables because the sql will has to delete the data in the background in many tables
 
 ![alt text](image-15.png)
+
+<<<<<<< HEAD
+
+## Differnece between clustered and non-clustered index
+
+- Clustered index will divide the table index into subtree's.
+- If we want to find a record using the clustered index then first it will check the value position based on the sub tree's it will divide and search so the finding will be a little bit faster.
+- While compared to the non-clustered indexing based on the indexed coloumn it will creates the another table backgrroung and the it will helps to find the record in less amount of time while compared to the clustered index.
+
+## Why the indexing is bad??
+
+- Reindexing will be the problem after insertion is happened which will increases the cost.
+- delete and insertion is slower.
+- but updation will become fast.
+
+# filtered index
+
+- filtering the rows on the coloumn which is released in the year 2020.
+
+```sql
+create index ix_filtered_year
+on movies (title)
+where releaseyear=2020
+```
+
+## enabling and disabling of index
+
+```sql
+alter index index_name on table_name disable\rebuild;
+```
+
+## Renaming query
+
+```sql
+exec sp_rename 'movies.ix_filtered_year','Ix_movie-filter_year'
+```
+
+=======
+
+> > > > > > > sql_trans
 
 ## Unique Vs Non-Unique
 
@@ -621,7 +727,11 @@ begin transaction
 update actors
 set FirstName ='prabhask'
 
+<<<<<<< HEAD
+where ActorID=11
+=======
 where ActorID=5
+>>>>>>> sql_trans
 
 commit transaction
 
@@ -722,6 +832,9 @@ EXEC sp_xml_removedocument @xmlDoc;
 - To Log The Actions.
 - Changes in one table should reflect another table.
 - if we update on a table the insert should happen in another table
+  ![alt text](image-21.png)
+
+![alt text](image-22.png)
 
 ![alt text](image-18.png)
 
